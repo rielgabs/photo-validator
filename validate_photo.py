@@ -84,7 +84,7 @@ def get_landmarks(img_bgr):
 # ── Individual checks — each returns a string error or None ───────────────────
 
 def check_face_coverage(pts, face_box, img_h):
-    """Face must cover at least 50% of photo height (chin to top of head)."""
+    """Face must cover at least 40% of photo height (chin to top of head)."""
     if pts:
         chin_y     = pts[152][1]
         forehead_y = pts[10][1]
@@ -94,7 +94,7 @@ def check_face_coverage(pts, face_box, img_h):
     else:
         _, y, _, fh = face_box
         ratio = (fh * 1.25) / img_h
-    if ratio < 0.50:
+    if ratio < 0.40:
         return f"Face is too small ({ratio:.0%} of photo height). Move closer so your face fills at least half the photo."
     return None
 
